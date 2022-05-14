@@ -83,6 +83,9 @@ renderCalendar();
 var saveBtnEl = $(".btn");
 let textareaEls = $("textarea");
 
+
+// this is the js for the todo list need to fix to match the new placement of save button
+//function todoList(){
 setInterval(runEverySecond, 1000);
 function runEverySecond(time) {
   var unix = moment().format("X");
@@ -92,7 +95,7 @@ function runEverySecond(time) {
 
   for (let i = 0; i < textareaEls.length; i++) {
     const textarea = $(textareaEls[i]);
-    const rowHour = i + 9;
+    const rowHour = i + 6;
     if (currentHour < rowHour) {
       // if in future
       textarea.css("background-color", "green");
@@ -108,7 +111,7 @@ function runEverySecond(time) {
 runEverySecond();
 
 saveBtnEl.click(function (event) {
-  let textarea = $(event.currentTarget).siblings("textarea");
+  let textarea = $(event.currentTarget).siblings("div + textarea");
   console.log(textarea, textarea.attr("id"));
   let id = textarea.attr("id");
   let val = textarea.val();
@@ -123,3 +126,4 @@ for (let i = 0; i < textareaEls.length; i++) {
   let valueFromStorage = localStorage.getItem(id);
   textarea.val(valueFromStorage);
 }
+//}todoList()

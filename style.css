@@ -10,7 +10,8 @@ html {
 }
 
 .container {
-  width: 100%;
+  max-width: 100%;
+  width: 100vw;
   height: 100vh;
   background-color: #12121f;
   color: #eee;
@@ -20,6 +21,7 @@ html {
 }
 
 .calendar {
+  display: flex;
   width: 45rem;
   height: 52rem;
   background-color: #222227;
