@@ -2,7 +2,6 @@ const date = new Date();
 
 const renderCalendar = () => {
   date.setDate(1);
-
   const monthDays = document.querySelector(".days");
 
   const lastDay = new Date(
@@ -43,11 +42,8 @@ const renderCalendar = () => {
   ];
 
   document.querySelector(".date h1").innerHTML = months[date.getMonth()];
-
   document.querySelector(".date p").innerHTML = new Date().toDateString();
-
   let days = "";
-
   for (let x = firstDayIndex; x > 0; x--) {
     days += `<div class="prev-date">${prevLastDay - x + 1}</div>`;
   }
@@ -78,6 +74,7 @@ document.querySelector(".next").addEventListener("click", () => {
   date.setMonth(date.getMonth() + 1);
   renderCalendar();
 });
+
 
 renderCalendar();
 var saveBtnEl = $(".btn");
@@ -126,4 +123,3 @@ for (let i = 0; i < textareaEls.length; i++) {
   let valueFromStorage = localStorage.getItem(id);
   textarea.val(valueFromStorage);
 }
-//}todoList()
