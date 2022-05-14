@@ -6,6 +6,12 @@
     
   }
 
+  
+
+  .bg-custom {
+    background-color: #165b7e;
+  }
+
   body {
       background-color: whitesmoke;
   }
@@ -13,18 +19,22 @@
   html {
     font-size: 62.5%;
   }
-  
-  .container {
-    margin-top: 200px;
-    width: 100%;
-    height: 25vh;
-    
-    color: #eee;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+  .time-block {
+    background-color: #165b7e;
   }
   
+  .container {
+    margin-top: 330px;
+    max-width: 100%;
+    width: 100%;
+    height: 25vh;
+    color: #eee;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
   .calendar {
     width: 45rem;
     height: 52rem;
