@@ -1,3 +1,12 @@
+var weatherBtn = document.querySelector('#weatherBtn')
+var inputValue = document.querySelector("#input-value");
+var displayingWeather = document.querySelector('#displaying-weather')
+var mainweather = document.querySelector('#mainWeather')
+
+
+
+
+
 const date = new Date();
 
 const renderCalendar = () => {
@@ -106,7 +115,7 @@ runEverySecond();
 
 saveBtnEl.click(function (event) {
   let textarea = $(event.currentTarget).siblings("textarea");
-  console.log(textarea, textarea.attr("id"));
+  // console.log(textarea, textarea.attr("id"));
   let id = textarea.attr("id");
   let val = textarea.val();
 
@@ -121,3 +130,73 @@ for (let i = 0; i < textareaEls.length; i++) {
   textarea.val(valueFromStorage);
 }
 
+function removeBadCity() {
+  var element = document.querySelector('#bad-city')
+  element.classList.remove('hide')
+}
+
+function addBadCity() {
+  var element = document.querySelector('#bad-city')
+  element.classList.add('hide')
+}
+
+// console.log(inputValue.value)
+
+
+// var getCity = localStorage.getItem()
+
+
+function activateWeather() {
+  // var savedItem = localStorage.setItem('city', inputValue.value)
+
+  console.log(inputValue.value)
+
+  var requestUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + inputValue.value + "&exclude=minutely,hourly,alerts&units=imperial&appid=c78c558b4a973e2264ce5c9d04ed7ac8"
+  
+
+  
+
+  addBadCity()
+
+  fetch(requestUrl) 
+    .then(function (response) {
+      if(response.status > 199 && response.status < 300){
+        
+      }else {
+        removeBadCity()
+        return;
+
+      }
+      return response.json()
+    })
+
+    .then((data) => displayWeather(data))  
+
+    console.log(requestUrl)
+}
+
+
+
+function displayWeather(data) {
+  var{ icon } = data.weather[0];
+  var{ temp } = data.main;
+  var{ main } = data.weather[0];
+
+  var iconMain = icon
+  var iconMainWeather = "https://openweathermap.org/img/wn/" + iconMain + ".png";
+  var tempMain = document.querySelector('#mainTemp');
+  var tempDescription = document.querySelector('#maindesc');
+  var desMain = ' ' + main
+  console.log(main)
+
+  mainweather.setAttribute('src', iconMainWeather)
+  tempMain.textContent =  temp + "°F"
+  tempDescription.textContent = desMain
+
+}
+
+console.log(inputValue.value)
+
+
+
+weatherBtn.addEventListener('click', activateWeather)
