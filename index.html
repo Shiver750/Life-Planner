@@ -15,20 +15,23 @@
     />
     <link
       href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./style.css" />
-    <title>Personal Life</title>
-  </head>
-  <body>
-    <nav class="navbar navbar-light bg-light">
+
+      rel="stylesheet"/>
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://kit.fontawesome.com/ddb2806a3f.js" crossorigin="anonymous"></script>
+  <title>Personal Life</title>
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light ">
       <div class="container-fluid">
-        <span class="mx-auto navbar-brand mb-0 h1">Personal Life</span>
+        <span class="mx-auto navbar-brand mb-0 h1 fs-1">Personal Life</span>
       </div>
     </nav>
     <div class="container">
+
       <div class="row col-12 col-md-6 col-sm-4 calendar">
         <div class="month col-12 col-md-6 col-sm-4">
+
           <i class="fas fa-angle-left prev"></i>
           <div class="date col-12 col-md-6 col-sm-4">
             <h1></h1>
@@ -317,19 +320,64 @@
           Save
         </button>
       </div>
-      <div class="card col-12 col-md-2 col-sm-2" style="width: 18rem">
-        <img src="..." class="card-img-top" alt="..." />
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
+
+     
+<div class="">
+    <div class="card row-wrap my-5 bg-custom" style="width: 20rem;">
+      <div class="card-body">
+        <h5 class="card-title text-center fs-2 ">Bit coin</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
       </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js"></script>
+
+
+  <div class="card row-wrap my-5 bg-custom" style="width: 20rem;">
+    <div class="card-body">
+      <h5 class="card-title text-center fs-2">Weather <button  class="custombutton btn btn-light" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        <i class="fa-solid fa-gear"></i>
+      </button></h5> 
+      <div class="d-flex d-inline">
+      <p class="card-text fs-4 text-center" id="displaying-weather"><img id="mainWeather" class="my-auto" src="" alt="">&nbsp;<p id="mainTemp" class="my-auto fs-3 font-weight-bold"></p>&nbsp;&nbsp;&nbsp;<p id="maindesc" class="my-auto fs-3 font-weight-bold"></p></p>
+    </div>
+    </div>
+  </div>
+
+<div class="card row-wrap my-5 bg-custom" style="width: 20rem;">
+  <div class="card-body">
+    <h5 class="card-title text-center fs-2">Important todo's</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+
+</div>
+</div>
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title custom-margin" id="staticBackdropLabel">Weather Settings</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-default">Enter city name</span>
+          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" id="input-value">
+          
+        </div>
+        <p id='bad-city' class="modal-bad-city custom-margin hide">Please enter a correct city</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"id="weatherBtn">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="./script.js"></script>
   </body>

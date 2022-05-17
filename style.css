@@ -5,6 +5,25 @@
   font-family: "Quicksand", sans-serif;
 }
 
+  .hide {
+    display: none !important;
+  }
+
+  .modal-bad-city {
+    color: red;
+    display: inline; 
+  }
+
+  .custom-margin {
+    margin-left: 185px !important;
+  }
+
+  .custombutton {
+    
+    float: right;
+    font-size: 10px;
+  }
+
 
 .container {
   max-width: 100%;
