@@ -5,6 +5,9 @@
   font-family: "Quicksand", sans-serif;
 }
 
+  body {
+    background-color: whitesmoke;
+  }
   .hide {
     display: none !important;
   }
@@ -29,7 +32,7 @@
   max-width: 100%;
   width: 100vw;
   height: 100vh;
-  background-color: #12121f;
+  
   color: #eee;
   display: flex;
   justify-content: space-between;
@@ -146,6 +149,10 @@
   
   .today {
     background-color: #167e56;
+  }
+
+  .card-body {
+    background-color: #165b7e;
   }
 
 textarea {
