@@ -1,12 +1,10 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Quicksand", sans-serif;
-    
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Quicksand", sans-serif;
+}
 
-  
 
 .container {
   max-width: 100%;
@@ -48,7 +46,7 @@
     background-color: #222227;
     box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.4);
   }
-  
+
   .month {
     width: 100%;
     height: 12rem;
@@ -130,3 +128,7 @@
   .today {
     background-color: #167e56;
   }
+
+textarea {
+  resize: none;
+}
