@@ -110,15 +110,15 @@ function addBadCity() {
 // console.log(inputValue.value)
 
 
-// var getCity = localStorage.getItem()
 
 
 function activateWeather() {
-  // var savedItem = localStorage.setItem('city', inputValue.value)
-  var requestUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + inputValue.value + "&exclude=minutely,hourly,alerts&units=imperial&appid=c78c558b4a973e2264ce5c9d04ed7ac8"
+  
+    var cityvalue = inputValue.value
+    var requestUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityvalue + "&exclude=minutely,hourly,alerts&units=imperial&appid=c78c558b4a973e2264ce5c9d04ed7ac8"
   
   addBadCity()
-
+// fetches and returns your city's weather
   fetch(requestUrl) 
     .then(function (response) {
       if(response.status > 199 && response.status < 300){
@@ -130,7 +130,6 @@ function activateWeather() {
       return response.json()
     })
   .then((data) => displayWeather(data))  
-    console.log(requestUrl)
 }
 
 function displayWeather(data) {
@@ -143,7 +142,7 @@ function displayWeather(data) {
   var tempMain = document.querySelector('#mainTemp');
   var tempDescription = document.querySelector('#maindesc');
   var desMain = ' ' + main
-  console.log(main)
+  
 
   mainweather.setAttribute('src', iconMainWeather)
   tempMain.textContent =  temp + "°F"
@@ -162,7 +161,6 @@ function activateNews(){
           })
           .then((datas) => displayNews(datas))  
 
-          console.log(newsRequestUrl)
 
 }
 
