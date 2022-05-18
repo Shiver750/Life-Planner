@@ -6,7 +6,6 @@ var mainweather = document.querySelector('#mainWeather')
 
 
 
-
 const date = new Date();
 
 const renderCalendar = () => {
@@ -154,14 +153,8 @@ function addBadCity() {
 
 function activateWeather() {
   // var savedItem = localStorage.setItem('city', inputValue.value)
-
-  console.log(inputValue.value)
-
   var requestUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + inputValue.value + "&exclude=minutely,hourly,alerts&units=imperial&appid=c78c558b4a973e2264ce5c9d04ed7ac8"
   
-
-  
-
   addBadCity()
 
   fetch(requestUrl) 
@@ -171,17 +164,12 @@ function activateWeather() {
       }else {
         removeBadCity()
         return;
-
       }
       return response.json()
     })
-
-    .then((data) => displayWeather(data))  
-
+  .then((data) => displayWeather(data))  
     console.log(requestUrl)
 }
-
-
 
 function displayWeather(data) {
   var{ icon } = data.weather[0];
@@ -200,6 +188,60 @@ function displayWeather(data) {
   tempDescription.textContent = desMain
 
 }
+
+activateNews()
+function activateNews(){
+      var date = moment().format('YYYY-MM-DD')
+        var newsRequestUrl = 'http://api.mediastack.com/v1/news?countries=us&languages=en&limit=3&date='+ date +'&categories=entertainment&access_key=11caaebeffcca14802210c1e3042098d'
+
+        fetch(newsRequestUrl)
+          .then(function (response){
+            return response.json()
+          })
+          .then((datas) => displayNews(datas))  
+
+          console.log(newsRequestUrl)
+
+}
+
+
+function displayNews(datas) {
+
+  var newsDiv = document.querySelector('#news-div')
+
+  for (i = 0; i <= 2; i++) {
+
+    var { title } = datas.data[i]
+    var { description } = datas.data[i]
+    var { url } = datas.data[i]
+
+    var newsCard = document.createElement('div')
+    var titleEl = document.createElement('p')
+    var descEl = document.createElement('p')
+    var linkEl = document.createElement('p')
+    var pageLinkEl = document.createElement('a')
+
+    newsCard.classList.add('bg-light', 'my-1')
+    titleEl.classList.add('text-dark', 'fw-bolder', 'text-center')
+    descEl.classList.add('text-dark', 'text-center')
+    linkEl.classList.add('text-dark', 'text-center')
+    
+    linkEl.textContent = 'For more information '
+    pageLinkEl.textContent = 'click here'
+    titleEl.textContent = 'Title: ' + title
+    descEl.textContent = description
+    
+    newsCard.appendChild(titleEl);
+    newsCard.appendChild(descEl);
+    newsCard.appendChild(linkEl);
+    newsDiv.appendChild(newsCard)
+    pageLinkEl.setAttribute('href', url)
+    pageLinkEl.setAttribute('target', '_blank')
+    linkEl.appendChild(pageLinkEl)
+    
+    console.log(newsCard)
+    
+  }}
 
 console.log(inputValue.value)
 
