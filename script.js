@@ -2,7 +2,6 @@ var weatherBtn = document.querySelector('#weatherBtn')
 var inputValue = document.querySelector("#input-value");
 var displayingWeather = document.querySelector('#displaying-weather')
 var mainweather = document.querySelector('#mainWeather')
-var displayWeatherCard = document.querySelector('#weather-card-display')
 
 
 
@@ -86,54 +85,16 @@ document.querySelector(".next").addEventListener("click", () => {
 
 
 renderCalendar();
-var saveBtnEl = $(".btn");
-let textareaEls = $("textarea");
 
-
-// this is the js for the todo list need to fix to match the new placement of save button
-//function todoList(){
-setInterval(runEverySecond, 1000);
-function runEverySecond(time) {
-  var unix = moment().format("X");
-  var time = moment(unix, "X").format("MMM DD, YYYY [at] h:mm:ss ");
-  const currentHour = moment(unix, "X").format("H");
-  $("#currentDay").text(time);
-
-  for (let i = 0; i < textareaEls.length; i++) {
-    const textarea = $(textareaEls[i]);
-    const rowHour = i + 6;
-    if (currentHour < rowHour) {
-      // if in future
-      textarea.css("background-color", "green");
-    } else if (currentHour > rowHour) {
-      // if in past
-      textarea.css("background-color", "grey");
-    } else {
-      // current hour
-      textarea.css("background-color", "red");
-    }
-  }
-}
-runEverySecond();
-
-saveBtnEl.click(function (event) {
-
-  let textarea = $(event.currentTarget).siblings("div + textarea");
-  // console.log(textarea, textarea.attr("id"));
-
-  let id = textarea.attr("id");
-  let val = textarea.val();
-
-  localStorage.setItem(id, val);
+// this is the js for the time blocks to use
+var timeBlockModal = document.querySelector(".days").addEventListener("click", function() {
+  document.getElementById("gridSystemModal").style.display = "block";
+  document.getElementById("gridSystemModal").classList.add("show");
+  console.log("clicked");
 });
 
-for (let i = 0; i < textareaEls.length; i++) {
-  const textarea = $(textareaEls[i]);
-  let id = textarea.attr("id");
 
-  let valueFromStorage = localStorage.getItem(id);
-  textarea.val(valueFromStorage);
-}
+
 
 
 function removeBadCity() {
@@ -171,17 +132,10 @@ function activateWeather() {
   .then((data) => displayWeather(data))  
 }
 
-
 function displayWeather(data) {
-  
-
-  // Grabs all the data from the weather
   var{ icon } = data.weather[0];
   var{ temp } = data.main;
   var{ main } = data.weather[0];
-  
-  localStorage.setItem('city', JSON.stringify(data))
-  
 
   var iconMain = icon
   var iconMainWeather = "https://openweathermap.org/img/wn/" + iconMain + ".png";
@@ -190,29 +144,17 @@ function displayWeather(data) {
   var desMain = ' ' + main
   
 
-  
-  // Assigning the data to the textcontent so its seeable
   mainweather.setAttribute('src', iconMainWeather)
   tempMain.textContent =  temp + "°F"
   tempDescription.textContent = desMain
- 
-  
-    
-}
 
-var city = JSON.parse(localStorage.getItem("city"))
-if(city){
-displayWeather(city)
 }
 
 activateNews()
-
 function activateNews(){
       var date = moment().format('YYYY-MM-DD')
         var newsRequestUrl = 'http://api.mediastack.com/v1/news?countries=us&languages=en&limit=3&date='+ date +'&categories=entertainment&access_key=11caaebeffcca14802210c1e3042098d'
 
-      
-// automatically grabs the news from the current day
         fetch(newsRequestUrl)
           .then(function (response){
             return response.json()
@@ -227,40 +169,28 @@ function displayNews(datas) {
 
   var newsDiv = document.querySelector('#news-div')
 
-
-  // a for loop to grab and push out all the info for the cards
   for (i = 0; i <= 2; i++) {
 
-
-    //grabbing all the data
     var { title } = datas.data[i]
     var { description } = datas.data[i]
     var { url } = datas.data[i]
 
-
-    // creating elements to put them on the news card
     var newsCard = document.createElement('div')
     var titleEl = document.createElement('p')
     var descEl = document.createElement('p')
     var linkEl = document.createElement('p')
     var pageLinkEl = document.createElement('a')
 
-
-    // adding classes to those elements
     newsCard.classList.add('bg-light', 'my-1')
     titleEl.classList.add('text-dark', 'fw-bolder', 'text-center')
     descEl.classList.add('text-dark', 'text-center')
     linkEl.classList.add('text-dark', 'text-center')
-    
 
-    // displaying the info onto the news card
     linkEl.textContent = 'For more information '
     pageLinkEl.textContent = 'click here'
     titleEl.textContent = 'Title: ' + title
     descEl.textContent = description
-    
 
-    // appending the elements to the main parent element 
     newsCard.appendChild(titleEl);
     newsCard.appendChild(descEl);
     newsCard.appendChild(linkEl);
@@ -268,9 +198,12 @@ function displayNews(datas) {
     pageLinkEl.setAttribute('href', url)
     pageLinkEl.setAttribute('target', '_blank')
     linkEl.appendChild(pageLinkEl)
+
+    console.log(newsCard)
+
   }}
 
-
+console.log(inputValue.value)
 
 
 
