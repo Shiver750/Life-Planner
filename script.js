@@ -137,6 +137,8 @@ function displayWeather(data) {
   var{ temp } = data.main;
   var{ main } = data.weather[0];
 
+  localStorage.setItem('city', JSON.stringify(data))
+
   var iconMain = icon
   var iconMainWeather = "https://openweathermap.org/img/wn/" + iconMain + ".png";
   var tempMain = document.querySelector('#mainTemp');
@@ -148,6 +150,11 @@ function displayWeather(data) {
   tempMain.textContent =  temp + "°F"
   tempDescription.textContent = desMain
 
+}
+
+var city = JSON.parse(localStorage.getItem("city"))
+if(city){
+displayWeather(city)
 }
 
 activateNews()
