@@ -1,4 +1,4 @@
-* {
+html, body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -158,3 +158,8 @@
 textarea {
   resize: none;
 }
+
+/*.modal-body {*/
+/*  border: 1px solid white;*/
+/*  background: black;*/
+/*}*/

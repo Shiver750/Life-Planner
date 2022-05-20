@@ -87,11 +87,120 @@ document.querySelector(".next").addEventListener("click", () => {
 renderCalendar();
 
 // this is the js for the time blocks to use
-var timeBlockModal = document.querySelector(".days").addEventListener("click", function() {
+var timeBlockModal = document.querySelector(".days");
+var timeSlotsContainer = document.querySelector(".timeslots-container");
+var modalSaveBtn = document.querySelector(".btn-primary")
+var modalCloseBtn = document.querySelector('.btn-secondary')
+
+timeBlockModal.addEventListener("click", function() {
   document.getElementById("gridSystemModal").style.display = "block";
   document.getElementById("gridSystemModal").classList.add("show");
-  console.log("clicked");
 });
+
+const timeSlots = [
+  {
+    label: "6:00am",
+    id: "apptSixA"
+  },
+  {
+    label: "7:00am",
+    id: "apptSevenA"
+  },
+  {
+    label: "8:00am",
+    id: "apptEightA"
+  },
+  {
+    label: "9:00am",
+    id: "apptNineA"
+  },
+  {
+    label: "10:00am",
+    id: "apptTenA"
+  },
+  {
+    label: "11:00am",
+    id: "apptElevenA"
+  },
+  {
+    label: "12:00pm",
+    id: "apptTwelveP"
+  },
+  {
+    label: "1:00pm",
+    id: "apptOneP"
+  },
+  {
+    label: "2:00pm",
+    id: "apptTwoP"
+  },
+  {
+    label: "3:00pm",
+    id: "apptThreeP"
+  },
+  {
+    label: "4:00pm",
+    id: "apptFourP"
+  },
+  {
+    label: "5:00pm",
+    id: "apptFiveP"
+  },
+  {
+    label: "6:00pm",
+    id: "apptSixP"
+  },
+  {
+    label: "7:00pm",
+    id: "apptSevenP"
+  },
+  {
+    label: "8:00pm",
+    id: "apptEightP"
+  },
+  {
+    label: "9:00pm",
+    id: "apptNineP"
+  },
+]
+
+function generateTimeslots() {
+  let timeslotHtml = "";
+  for (let i = 0; i < timeSlots.length; i++) {
+    let timeslot = timeSlots[i];
+    let template = `<div class="row my-1">
+                      <div class="col-2 col-sm-3 col-md-2 border border-dark text-align-center time-block">${timeslot.label}</div>
+                      <textarea name="appointment" id="${timeslot.id} cols="30" rows="1" class="appt col-8 col-sm-6 col-md-8 border border-dark"></textarea>
+                    </div>`;
+    timeslotHtml += template;
+  }
+  timeSlotsContainer.innerHTML = timeslotHtml;
+}
+generateTimeslots();
+
+function closeModal() {
+  document.getElementById("gridSystemModal").style.display = "none"
+  document.getElementById("gridSystemModal").classList.remove("show")
+}
+
+var modal = document.getElementById("gridSystemModal");
+
+window.onclick = function(event) {
+  if (event.target === modal) {
+    closeModal();
+  }
+}
+modalSaveBtn.onclick = function (event){
+  if (event.target === modalSaveBtn) {
+    closeModal();
+  }
+ }
+
+ modalCloseBtn.onclick = function(event){
+  if (event.target === modalCloseBtn){
+    closeModal();
+  }
+ }
 
 
 
