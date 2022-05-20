@@ -89,11 +89,12 @@ renderCalendar();
 // this is the js for the time blocks to use
 var timeBlockModal = document.querySelector(".days");
 var timeSlotsContainer = document.querySelector(".timeslots-container");
+var modalSaveBtn = document.querySelector(".btn-primary")
+var modalCloseBtn = document.querySelector('.btn-secondary')
 
 timeBlockModal.addEventListener("click", function() {
   document.getElementById("gridSystemModal").style.display = "block";
   document.getElementById("gridSystemModal").classList.add("show");
-  console.log("clicked");
 });
 
 const timeSlots = [
@@ -173,15 +174,33 @@ function generateTimeslots() {
                     </div>`;
     timeslotHtml += template;
   }
-  console.log(timeslotHtml);
   timeSlotsContainer.innerHTML = timeslotHtml;
 }
 generateTimeslots();
 
 function closeModal() {
-  
+  document.getElementById("gridSystemModal").style.display = "none"
+  document.getElementById("gridSystemModal").classList.remove("show")
 }
 
+var modal = document.getElementById("gridSystemModal");
+
+window.onclick = function(event) {
+  if (event.target === modal) {
+    closeModal();
+  }
+}
+modalSaveBtn.onclick = function (event){
+  if (event.target === modalSaveBtn) {
+    closeModal();
+  }
+ }
+
+ modalCloseBtn.onclick = function(event){
+  if (event.target === modalCloseBtn){
+    closeModal();
+  }
+ }
 
 
 
