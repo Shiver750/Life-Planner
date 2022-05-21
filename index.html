@@ -56,7 +56,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Modal title</h5>
+              <h5 class="modal-title">""</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -104,7 +104,12 @@
 <div class="card row-wrap my-5 bg-custom" style="width: 25rem;">
   <div class="card-body">
     <h5 class="card-title text-center fs-2">Important todo's</h5>
-    <p class="card-text text-center">Some quick example.</p>
+    <div id="myDIV" class="header text-center">
+      <input type="text" id="myInput" placeholder="">
+      <span onclick="newElement()" class="addBtn">Add</span>
+    </div>
+    <ul id="myUL">
+    </ul>
   </div>
 </div>
 
