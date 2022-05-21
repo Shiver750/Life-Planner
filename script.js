@@ -4,6 +4,14 @@ var displayingWeather = document.querySelector('#displaying-weather')
 var mainweather = document.querySelector('#mainWeather')
 var weatherTextTitle = document.querySelector('#weather-title-text')
 
+// this is the js for the time blocks to use
+var timeSlotsContainer = document.querySelector(".timeslots-container");
+var timeSlotsTextareas;
+var modal = document.getElementById("gridSystemModal");
+var dayPlannerModalTitle = document.querySelector("#gridSystemModal .modal-title");
+var dayPlannerSaveBtn = document.querySelector(".btn-primary")
+var modalCloseBtn = document.querySelector('.btn-secondary')
+var modalXBtn = document.querySelector(".btn-close")
 
 
 
@@ -54,25 +62,41 @@ const renderCalendar = () => {
 
   document.querySelector(".date h1").innerHTML = months[date.getMonth()];
   document.querySelector(".date p").innerHTML = new Date().toDateString();
-  let days = "";
+  monthDays.innerHTML = "";
+
   for (let x = firstDayIndex; x > 0; x--) {
-    days += `<div class="prev-date">${prevLastDay - x + 1}</div>`;
+    let prevMonthDay = document.createElement("div");
+    prevMonthDay.classList.add("prev-date");
+    prevMonthDay.innerText = prevLastDay - x + 1;
+    monthDays.appendChild(prevMonthDay);
   }
 
   for (let i = 1; i <= lastDay; i++) {
-    if (
-      i === new Date().getDate() &&
-      date.getMonth() === new Date().getMonth()
-    ) {
-      days += `<div class="today">${i}</div>`;
-    } else {
-      days += `<div>${i}</div>`;
-    }
-  }
+    let isToday = i === new Date().getDate() && date.getMonth() === new Date().getMonth();
+    let day = document.createElement("div");
+    day.setAttribute("id", i);
+    day.classList.add("day", isToday ? "today" : null);
+    day.innerText = i;
 
+    let dayDate = new Date();
+    dayDate.setMonth(date.getMonth());
+    dayDate.setFullYear(date.getFullYear());
+    dayDate.setDate(i);
+
+    day.addEventListener("click", () => {
+      openDayPlanner(dayDate);
+      dayPlannerSaveBtn.onclick = function () {
+        saveDayPlanner(dayDate);
+      }
+    });
+    monthDays.appendChild(day);
+  }
+  // console.log('next Days number', nextDays)
   for (let j = 1; j <= nextDays; j++) {
-    days += `<div class="next-date">${j}</div>`;
-    monthDays.innerHTML = days;
+    let nextMonthDay = document.createElement("div");
+    nextMonthDay.classList.add("next-date");
+    nextMonthDay.innerText = j;
+    monthDays.appendChild(nextMonthDay);
   }
 };
 
@@ -89,16 +113,8 @@ document.querySelector(".next").addEventListener("click", () => {
 
 renderCalendar();
 
-// this is the js for the time blocks to use
-var timeBlockModal = document.querySelector(".days");
-var timeSlotsContainer = document.querySelector(".timeslots-container");
-var modalSaveBtn = document.querySelector(".btn-primary")
-var modalCloseBtn = document.querySelector('.btn-secondary')
 
-timeBlockModal.addEventListener("click", function() {
-  document.getElementById("gridSystemModal").style.display = "block";
-  document.getElementById("gridSystemModal").classList.add("show");
-});
+
 
 const timeSlots = [
   {
@@ -173,11 +189,12 @@ function generateTimeslots() {
     let timeslot = timeSlots[i];
     let template = `<div class="row my-1">
                       <div class="col-2 col-sm-3 col-md-2 border border-dark text-align-center time-block">${timeslot.label}</div>
-                      <textarea name="appointment" id="${timeslot.id} cols="30" rows="1" class="appt col-8 col-sm-6 col-md-8 border border-dark"></textarea>
+                      <textarea name="appointment" id="${timeslot.id}" cols="30" rows="1" class="appt col-10 border border-dark"></textarea>
                     </div>`;
     timeslotHtml += template;
   }
   timeSlotsContainer.innerHTML = timeslotHtml;
+  timeSlotsTextareas  = document.querySelectorAll(".timeslots-container textarea");
 }
 generateTimeslots();
 
@@ -186,24 +203,56 @@ function closeModal() {
   document.getElementById("gridSystemModal").classList.remove("show")
 }
 
-var modal = document.getElementById("gridSystemModal");
 
-window.onclick = function(event) {
+
+modal.onclick = function(event) {
   if (event.target === modal) {
     closeModal();
   }
 }
-modalSaveBtn.onclick = function (event){
-  if (event.target === modalSaveBtn) {
-    closeModal();
-  }
- }
 
- modalCloseBtn.onclick = function(event){
-  if (event.target === modalCloseBtn){
-    closeModal();
+function openDayPlanner(dayDate) {
+  dayPlannerModalTitle.innerText = dayDate.toDateString();
+  let key = `${dayDate.getFullYear()}-${dayDate.getMonth() + 1}-${dayDate.getDate()}`;
+  let todosFromStorage = JSON.parse(localStorage.getItem(key)) || {};
+
+  for (let i = 0; i < timeSlotsTextareas.length; i++) {
+    let element = timeSlotsTextareas[i];
+    let id = element.getAttribute("id");
+    element.value = todosFromStorage[id] || "";
   }
- }
+
+
+  document.getElementById("gridSystemModal").style.display = "block";
+  document.getElementById("gridSystemModal").classList.add("show");
+}
+
+function saveDayPlanner(dayDate) {
+  let textareaObj = {}
+  let textareas = timeSlotsContainer.querySelectorAll("textarea");
+  for (let i = 0; i < textareas.length; i++) {
+    const textarea = textareas[i];
+    let id = textarea.getAttribute("id");
+    let val = textarea.value;
+    textareaObj[id] = val;
+  }
+  let key = `${dayDate.getFullYear()}-${dayDate.getMonth() + 1}-${dayDate.getDate()}`;
+
+  localStorage.setItem(key, JSON.stringify(textareaObj));
+
+  closeModal();
+}
+
+modalCloseBtn.onclick = function(event){
+
+  closeModal();
+}
+modalXBtn.onclick = function (event) {
+
+  closeModal();
+}
+
+
 
 
 
@@ -227,7 +276,7 @@ function addBadCity() {
 function activateWeather() {
   
     var cityvalue = inputValue.value
-    
+
     console.log(inputValue.value, "__________________________________________")
     var requestUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityvalue + "&exclude=minutely,hourly,alerts&units=imperial&appid=c78c558b4a973e2264ce5c9d04ed7ac8"
   
@@ -254,15 +303,15 @@ function displayWeather(data) {
   var{ main } = data.weather[0];
 
   localStorage.setItem('city', JSON.stringify(data))
-  
+
 
   var iconMain = icon
   var iconMainWeather = "https://openweathermap.org/img/wn/" + iconMain + ".png";
   var tempMain = document.querySelector('#mainTemp');
   var tempDescription = document.querySelector('#maindesc');
   var desMain = ' ' + main
- 
-  
+
+
 
   mainweather.setAttribute('src', iconMainWeather)
   tempMain.textContent =  temp + "°F"
@@ -286,7 +335,7 @@ weatherTextTitle.textContent = titleCity.charAt(0).toUpperCase() + titleCity.sli
 //           .then(function (response){
 //             return response.json()
 //           })
-//           .then((datas) => displayNews(datas))  
+//           .then((datas) => displayNews(datas))
 
 
 // }
@@ -296,7 +345,7 @@ weatherTextTitle.textContent = titleCity.charAt(0).toUpperCase() + titleCity.sli
 
 //   var newsDiv = document.querySelector('#news-div')
 
-  
+
 
 //   for (i = 0; i <= 2; i++) {
 
