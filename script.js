@@ -326,60 +326,61 @@ displayWeather(city)
 weatherTextTitle.textContent = titleCity.charAt(0).toUpperCase() + titleCity.slice(1);
 }
 
-// activateNews()
-// function activateNews(){
-//       var date = moment().format('YYYY-MM-DD')
-//         var newsRequestUrl = 'http://api.mediastack.com/v1/news?countries=us&languages=en&limit=3&date='+ date +'&categories=entertainment&access_key=11caaebeffcca14802210c1e3042098d'
+activateNews()
+function activateNews(){
+      var date = moment().format('YYYY-MM-DD')
+        var newsRequestUrl = 'http://api.mediastack.com/v1/news?countries=us&languages=en&limit=3&date='+ date +'&categories=entertainment&access_key=8338b3a27114b292b09e1959bf5b9f4a'
 
-//         fetch(newsRequestUrl)
-//           .then(function (response){
-//             return response.json()
-//           })
-//           .then((datas) => displayNews(datas))
+        fetch(newsRequestUrl)
+          .then(function (response){
 
-
-// }
+            return response.json()
+          })
+          .then((datas) => displayNews(datas))
 
 
-// function displayNews(datas) {
-
-//   var newsDiv = document.querySelector('#news-div')
+}
 
 
+function displayNews(datas) {
+  console.log(datas);
+  var newsDiv = document.querySelector('#news-div')
 
-//   for (i = 0; i <= 2; i++) {
 
-//     var { title } = datas.data[i]
-//     var { description } = datas.data[i]
-//     var { url } = datas.data[i]
 
-//     var newsCard = document.createElement('div')
-//     var titleEl = document.createElement('p')
-//     var descEl = document.createElement('p')
-//     var linkEl = document.createElement('p')
-//     var pageLinkEl = document.createElement('a')
+  for (i = 0; i <= 2; i++) {
 
-//     newsCard.classList.add('bg-light', 'my-1')
-//     titleEl.classList.add('text-dark', 'fw-bolder', 'text-center')
-//     descEl.classList.add('text-dark', 'text-center')
-//     linkEl.classList.add('text-dark', 'text-center')
+    var { title } = datas.data[i]
+    var { description } = datas.data[i]
+    var { url } = datas.data[i]
 
-//     linkEl.textContent = 'For more information '
-//     pageLinkEl.textContent = 'click here'
-//     titleEl.textContent = 'Title: ' + title
-//     descEl.textContent = description
+    var newsCard = document.createElement('div')
+    var titleEl = document.createElement('p')
+    var descEl = document.createElement('p')
+    var linkEl = document.createElement('p')
+    var pageLinkEl = document.createElement('a')
 
-//     newsCard.appendChild(titleEl);
-//     newsCard.appendChild(descEl);
-//     newsCard.appendChild(linkEl);
-//     newsDiv.appendChild(newsCard)
-//     pageLinkEl.setAttribute('href', url)
-//     pageLinkEl.setAttribute('target', '_blank')
-//     linkEl.appendChild(pageLinkEl)
+    newsCard.classList.add('bg-light', 'my-1')
+    titleEl.classList.add('text-dark', 'fw-bolder', 'text-center')
+    descEl.classList.add('text-dark', 'text-center')
+    linkEl.classList.add('text-dark', 'text-center')
 
-//     console.log(newsCard)
+    linkEl.textContent = 'For more information '
+    pageLinkEl.textContent = 'click here'
+    titleEl.textContent = 'Title: ' + title
+    descEl.textContent = description
 
-//   }}
+    newsCard.appendChild(titleEl);
+    newsCard.appendChild(descEl);
+    newsCard.appendChild(linkEl);
+    newsDiv.appendChild(newsCard)
+    pageLinkEl.setAttribute('href', url)
+    pageLinkEl.setAttribute('target', '_blank')
+    linkEl.appendChild(pageLinkEl)
+
+    console.log(newsCard)
+
+  }}
 
 
 
