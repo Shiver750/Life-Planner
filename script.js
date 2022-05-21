@@ -91,7 +91,7 @@ const renderCalendar = () => {
     });
     monthDays.appendChild(day);
   }
-  // console.log('next Days number', nextDays)
+
   for (let j = 1; j <= nextDays; j++) {
     let nextMonthDay = document.createElement("div");
     nextMonthDay.classList.add("next-date");
@@ -268,7 +268,7 @@ function addBadCity() {
   element.classList.add('hide')
 }
 
-// console.log(inputValue.value)
+
 
 
 
@@ -277,7 +277,7 @@ function activateWeather() {
   
     var cityvalue = inputValue.value
 
-    console.log(inputValue.value, "__________________________________________")
+
     var requestUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityvalue + "&exclude=minutely,hourly,alerts&units=imperial&appid=c78c558b4a973e2264ce5c9d04ed7ac8"
   
   addBadCity()
@@ -343,7 +343,7 @@ function activateNews(){
 
 
 function displayNews(datas) {
-  console.log(datas);
+
   var newsDiv = document.querySelector('#news-div')
 
 
@@ -378,7 +378,7 @@ function displayNews(datas) {
     pageLinkEl.setAttribute('target', '_blank')
     linkEl.appendChild(pageLinkEl)
 
-    console.log(newsCard)
+
 
   }}
 
@@ -435,16 +435,6 @@ function newElement() {
     }
   }
 }
-
-
-
-
-
-
-
-console.log(inputValue.value)
-
-
 
 weatherBtn.addEventListener('click', activateWeather)
 
