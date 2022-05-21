@@ -49,7 +49,14 @@ html, body {
 
   .time-block {
     background-color: #165b7e;
+    padding: 0;
+    text-align: center;
   }
+
+.timeslots-container {
+  padding: 0;
+  margin: 0;
+}
   
   .container {
     margin-top: 330px;
@@ -159,6 +166,9 @@ textarea {
   resize: none;
 }
 
+#gridSystemModal .modal-title {
+  color: black;
+=======
 ul {
   margin: 0;
   padding: 0;
@@ -245,4 +255,5 @@ input {
 
 .addBtn:hover {
   background-color: #bbb;
+
 }
