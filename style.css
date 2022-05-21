@@ -49,7 +49,14 @@ html, body {
 
   .time-block {
     background-color: #165b7e;
+    padding: 0;
+    text-align: center;
   }
+
+.timeslots-container {
+  padding: 0;
+  margin: 0;
+}
   
   .container {
     margin-top: 330px;

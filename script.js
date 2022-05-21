@@ -189,7 +189,7 @@ function generateTimeslots() {
     let timeslot = timeSlots[i];
     let template = `<div class="row my-1">
                       <div class="col-2 col-sm-3 col-md-2 border border-dark text-align-center time-block">${timeslot.label}</div>
-                      <textarea name="appointment" id="${timeslot.id}" cols="30" rows="1" class="appt col-8 col-sm-6 col-md-8 border border-dark"></textarea>
+                      <textarea name="appointment" id="${timeslot.id}" cols="30" rows="1" class="appt col-10 border border-dark"></textarea>
                     </div>`;
     timeslotHtml += template;
   }
