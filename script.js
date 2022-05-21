@@ -332,9 +332,70 @@ weatherTextTitle.textContent = titleCity.charAt(0).toUpperCase() + titleCity.sli
 
 //   }}
 
+
+
+ var todolist = document.getElementsByTagName('LI')
+
+for (var i = 0; i < todolist.length; i++) {
+  var span = document.createElement('span');
+  var text = document.createTextNode('\u00d7');
+  span.className = "close";
+  span.appendChild(text);
+  todolist[i].appendChild(span)
+}
+
+var closeTodoList = document.getElementsByClassName('close');
+
+for (var i = 0; i < closeTodoList.length; i++) {
+  closeTodoList[i].onclick = function() {
+    var div = this.parentElement;
+    div.style.display = 'none';
+  }
+}
+
+var todoListName = document.querySelector('ul');
+todoListName.addEventListener('click', function(event) {
+  if (event.target.tagName === 'LI') {
+    event.target.classList.toggle('checked')
+  }
+}, false);
+
+function newElement() {
+  var liList = document.createElement("li");
+  var inputValue = document.getElementById("myInput").value;
+  var tList = document.createTextNode(inputValue);
+  liList.appendChild(tList);
+  if (inputValue === '') {
+    alert("You must write something!");
+  } else {
+    document.getElementById("myUL").appendChild(liList);
+  }
+  document.getElementById("myInput").value = "";
+
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  liList.appendChild(span);
+
+  for (i = 0; i < closeTodoList.length; i++) {
+    closeTodoList[i].onclick = function() {
+      var div = this.parentElement;
+      div.style.display = "none";
+    }
+  }
+}
+
+
+
+
+
+
+
 console.log(inputValue.value)
 
 
 
 weatherBtn.addEventListener('click', activateWeather)
+
 
