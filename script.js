@@ -278,7 +278,7 @@ function activateWeather() {
     var cityvalue = inputValue.value
 
 
-    var requestUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityvalue + "&exclude=minutely,hourly,alerts&units=imperial&appid=c78c558b4a973e2264ce5c9d04ed7ac8"
+    var requestUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityvalue + "&exclude=minutely,hourly,alerts&units=imperial&appid=8338b3a27114b292b09e1959bf5b9f4a"
   
   addBadCity()
 // fetches and returns your city's weather
