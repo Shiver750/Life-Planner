@@ -329,7 +329,7 @@ weatherTextTitle.textContent = titleCity.charAt(0).toUpperCase() + titleCity.sli
 activateNews()
 function activateNews(){
       var date = moment().format('YYYY-MM-DD')
-        var newsRequestUrl = 'http://api.mediastack.com/v1/news?countries=us&languages=en&limit=3&date='+ date +'&categories=entertainment&access_key=8338b3a27114b292b09e1959bf5b9f4a'
+        var newsRequestUrl = 'http://api.mediastack.com/v1/news?countries=us&languages=en&limit=3&date='+ date +'&categories=entertainment&access_key=4c3f70130542f8c63893bb2f89eab82e'
 
         fetch(newsRequestUrl)
           .then(function (response){
