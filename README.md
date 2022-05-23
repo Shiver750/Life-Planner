@@ -8,5 +8,4 @@ Our project is a web app with the following functionality:
 
 [(Deployed Project Page)](https://shiver750.github.io/Life-Planner/)
 
-![Project 1 Page Screenshot](assets/project 1 readme screenshot.PNG)
-
+<img src="https://github.com/Shiver750/Life-Planner/blob/main/assets/project%201%20readme%20screenshot.PNG" >
